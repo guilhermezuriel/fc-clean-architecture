@@ -1,7 +1,9 @@
 import { InputCreateProductDto } from "./create.product.dto";
 import CreateProductUseCase from "./create.product.usecase";
+
+
 const input: InputCreateProductDto = {
-  name: "John",
+  name: "Product",
   price: 10,
   type: "a",
 };
@@ -44,7 +46,8 @@ describe("Unit test create Product use case", () => {
     const ProductRepository = MockRepository();
     const ProductCreateUseCase = new CreateProductUseCase(ProductRepository);
 
-    input.price = 0;
+    input.name = "Product";
+    input.price = -1;
 
     await expect(ProductCreateUseCase.execute(input)).rejects.toThrow(
       "Price must be greater than zero"
